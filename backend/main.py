@@ -17,6 +17,7 @@ from fastapi.middleware.cors import CORSMiddleware
 frontend = settings.FRONTEND_URL
 
 
+
 # ====================== DATABASE ======================
 engine = create_async_engine(settings.DATABASE_URL, echo=False)
 async_session = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
@@ -34,7 +35,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[frontend],  # Use localhost only
+    allow_origins=[frontend, "http://localhost:5173"],  # Use localhost only
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
